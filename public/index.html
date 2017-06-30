@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="/jsjquery/jquery.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.css" />
+    <script src="/js/bootstrap.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/index/index.js"></script>
+    <title>Chat Demo</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="col-md-8 col-md-offset-2">
+            <br><br><br><br><br><br>
+            <form action="/chat" class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Your name </label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="name" placeholder="Tero jiskauney name !!!">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-danger pull-right">Enter chat</button>
+                    </div>
+                </div>
+            </form>
+            <br><br>
+            <div class="jumbotron">
+                <h1>Hello, Everyone.</h1><br>
+                <p>Feel free for contributions.</p>
+                <h3>Designed and developed by <br>Pramesh Bajracharya</h3>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -2,7 +2,7 @@
     "name": "dochat",
     "version": "1.0.0",
     "description": "Chat App demo ",
-    "main": "",
+    "main": "app.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
@@ -10,7 +10,7 @@
         "type": "git",
         "url": "git+https://github.com/Suzal3579/dochat.git"
     },
-    "author": "",
+    "author": "Pramesh Bajracharya",
     "license": "ISC",
     "bugs": {
         "url": "https://github.com/Suzal3579/dochat/issues"
