@@ -5,8 +5,12 @@ let express = require('express');
 
 app.use('/js', express.static(__dirname + "/public/"));
 
-app.get('/', function (req, res) {
+app.get('/chat', (req, res) => {
     res.sendFile(__dirname + '/public/index.html');
+});
+
+app.get('/draw', (req, res) => {
+    res.sendFile(__dirname + '/public/draw.html');
 });
 
 io.on('connection', (socket) => {
