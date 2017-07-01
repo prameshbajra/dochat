@@ -1,0 +1,3 @@
+$(document).ready(() => {
+    // access Id and use of socket here ....
+});
