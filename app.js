@@ -8,7 +8,7 @@ let express = require("express"),
 app.engine(".hbs", handlebars({ defaultLayout: "layout", extname: ".hbs", }));
 app.set('view engine', '.hbs');
 
-app.listen(3000);
+server.listen(3000);
 
 // setting up default routes ... 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -16,15 +16,28 @@ app.use(bodyParser.json());
 app.use("/jsjquery", express.static(__dirname + "/node_modules/jquery/dist/"));
 app.use("/css", express.static(__dirname + "/node_modules/bootstrap/dist/css/"));
 app.use("/js", express.static(__dirname + "/node_modules/bootstrap/dist/js/"));
-app.use("/socket.io", express.static(__dirname + "/node_modules/socket.io-client/dist"));
+app.use("/socket.io", express.static(__dirname + "/node_modules/socket.io/socket.io-client/dist/"));
 app.use("/main", express.static(__dirname + "/public/"));
 
+
+// Setting Routes ...
 app.get("/", (req, res, next) => {
     res.render("index");
 });
 
 app.post("/chat", (req, res, next) => {
-    let name = req.body.name;
-    console.log(name);
-    res.render("chat", { username: name });
+    res.render("chat");
+});
+
+
+// Socket io ...
+
+io.sockets.on("connection", (socket) => {
+    socket.on("username", (name) => {
+        io.sockets.emit("username", name);
+    })
+
+    socket.on("message", (message) => {
+        io.sockets.emit("newMsg", message);
+    });
 });
