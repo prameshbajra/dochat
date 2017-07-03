@@ -1,28 +1,23 @@
 {
-  "name": "dochat",
-  "version": "1.0.0",
-  "description": "Chat App demo ",
-  "main": "app.js",
-  "scripts": {
-    "start": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Suzal3579/dochat.git"
-  },
-  "author": "Pramesh Bajracharya",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Suzal3579/dochat/issues"
-  },
-  "homepage": "https://github.com/Suzal3579/dochat#readme",
-  "dependencies": {
-    "body-parser": "^1.17.2",
-    "bootstrap": "^3.3.7",
-    "express": "^4.15.3",
-    "express-handlebars": "^3.0.0",
-    "jquery": "^3.2.1",
-    "socket.io": "^2.0.3"
-  }
+    "name": "chat",
+    "version": "1.0.0",
+    "description": "This is what I do ...",
+    "main": "server.js",
+    "dependencies": {
+        "body-parser": "^1.17.2",
+        "bootstrap": "^3.3.7",
+        "express": "^4.15.3",
+        "jquery": "^3.2.1",
+        "socket.io": "^2.0.3"
+    },
+    "engines": {
+        "node": "6.9.4"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "nodemon server.js"
+    },
+    "author": "",
+    "license": "ISC"
 }
