@@ -2,5 +2,6 @@
 
 **Still under development**
 
-https://dochatdemo.herokuapp.com/
 Try it out ...
+
+https://dochatdemo.herokuapp.com/
