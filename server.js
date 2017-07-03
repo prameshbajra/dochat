@@ -4,8 +4,9 @@ let express = require('express'),
     server = require('http').createServer(app),
     io = require("socket.io").listen(server);
 let usernames = ["<b>Users</b><br/>"];
+let port = process.env.PORT || 8080;
 
-server.listen(3000);
+server.listen(port);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
