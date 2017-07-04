@@ -24,12 +24,14 @@ app.get('/', (req, res, next) => {
 
 io.sockets.on("connection", (socket) => {
     socket.on("username", (name, callback) => {
+        console.log(usernames);
+        console.log("and" + name);
         if (usernames.includes(name)) {
-            callback = (false);
+            callback(false);
         } else {
             callback(true);
             socket.username = name;
-            usernames.push(name + "<br/>");
+            usernames.push(name);
             io.emit("usernames", usernames);
         }
     });

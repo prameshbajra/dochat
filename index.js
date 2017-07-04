@@ -15,21 +15,20 @@ $(document).ready(() => {
 
     indexForm.submit((e) => {
         e.preventDefault();
-        nameEnter.fadeOut(1000);
         socket.emit("username", name.val(), (value) => {
             console.log(value);
-
             if (value) {
                 nameEnter.fadeOut(1000);
                 chat.slideDown(1000, () => {
                     messageField.focus();
                 });
             } else {
-                error.slideDown(1000);
+                error.show();
                 error.html("Username already taken ...");
             }
         });
     });
+
     formMessage.submit((e) => {
         e.preventDefault();
         socket.emit("message", messageField.val());
@@ -44,7 +43,7 @@ $(document).ready(() => {
     socket.on("usernames", (usernames) => {
         let htmlUsers = "";
         for (let i = 0; i < usernames.length; i++) {
-            htmlUsers += usernames[i];
+            htmlUsers += usernames[i] + "<br/>";
         }
         users.html(htmlUsers);
     });
