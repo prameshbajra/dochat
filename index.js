@@ -16,7 +16,6 @@ $(document).ready(() => {
     indexForm.submit((e) => {
         e.preventDefault();
         socket.emit("username", name.val(), (value) => {
-            console.log(value);
             if (value) {
                 nameEnter.fadeOut(1000);
                 chat.slideDown(1000, () => {
@@ -37,7 +36,7 @@ $(document).ready(() => {
 
     // Socketing ...
     socket.on("message", (message) => {
-        chat.append(message + "<br/>");
+        chat.append("<b>" + message.name + " : </b>" + message.message + "<br/>");
     });
 
     socket.on("usernames", (usernames) => {

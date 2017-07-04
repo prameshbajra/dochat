@@ -24,18 +24,26 @@ app.get('/', (req, res, next) => {
 
 io.sockets.on("connection", (socket) => {
     socket.on("username", (name, callback) => {
-        console.log(usernames);
-        console.log("and" + name);
-        if (usernames.includes(name)) {
-            callback(false);
-        } else {
+        if (!usernames.includes(name)) {
             callback(true);
             socket.username = name;
-            usernames.push(name);
+            console.log(socket.username);
+            usernames.push(socket.username);
             io.emit("usernames", usernames);
+        } else {
+            callback(false);
         }
     });
     socket.on("message", (message) => {
-        io.emit("message", message);
+        io.emit("message", { message: message, name: socket.username });
+    });
+    socket.on("disconnect", (value) => {
+        console.log("value" + value);
+        console.log("Socket username" + socket.username);
+        console.log("username" + usernames);
+        if (!socket.username)
+            return;
+        usernames.splice(usernames.indexOf(socket.username), 1);
+        io.emit("usernames", usernames);
     });
 });
