@@ -38,9 +38,6 @@ io.sockets.on("connection", (socket) => {
         io.emit("message", { message: message, name: socket.username });
     });
     socket.on("disconnect", (value) => {
-        console.log("value" + value);
-        console.log("Socket username" + socket.username);
-        console.log("username" + usernames);
         if (!socket.username)
             return;
         usernames.splice(usernames.indexOf(socket.username), 1);
