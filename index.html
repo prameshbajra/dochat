@@ -51,10 +51,11 @@
                 <button id="buttonSubmit" type="submit" class="btn btn-danger pull-right">Send</button>
             </form>
             <br><br><br><br>
-            <div style=" min-height: 100vh;" id="users" class="col-md-2"></div>
-            <div id="chat" style="height: 100vh;"></div>
+            <div class="row" style="height:100%;width:100%;position:relative;overflow:hidden;">
+                <div class="col-md-2 well" style="height:70vh;white-space: pre-line;" id="users"></div>
+                <div class="col-md-10 well" id="chatMain" style="height: 70vh;position: absolute;right: -20px;overflow-y: scroll;"></div>
+            </div>
         </div>
-    </div>
     </div>
 </body>
 

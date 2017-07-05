@@ -1,5 +1,6 @@
 $(document).ready(() => {
     let chat = $('.chat'),
+        chatMain = $('#chatMain'),
         name = $('#name'),
         users = $('#users'),
         error = $('#error'),
@@ -36,7 +37,7 @@ $(document).ready(() => {
 
     // Socketing ...
     socket.on("message", (message) => {
-        chat.append("<b>" + message.name + " : </b>" + message.message + "<br/>");
+        chatMain.append("<b>" + message.name + " : </b>" + message.message + "<br/>");
     });
 
     socket.on("usernames", (usernames) => {
