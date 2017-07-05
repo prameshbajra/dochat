@@ -27,7 +27,6 @@ io.sockets.on("connection", (socket) => {
         if (!usernames.includes(name)) {
             callback(true);
             socket.username = name;
-            console.log(socket.username);
             usernames.push(socket.username);
             io.emit("usernames", usernames);
         } else {
