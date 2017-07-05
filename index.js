@@ -18,7 +18,7 @@ $(document).ready(() => {
         socket.emit("username", name.val(), (value) => {
             if (value) {
                 nameEnter.fadeOut(1000);
-                chat.slideDown(1000, () => {
+                chat.fadeIn(1000, () => {
                     messageField.focus();
                 });
             } else {

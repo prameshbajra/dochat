@@ -43,25 +43,18 @@
 
         <!--Chat page-->
         <div class="chat">
-            <div class="row">
-                <div id="chat" class="col-md-10">
-                </div>
-                <div id="users" class="col-md-2">
-                </div>
-            </div>
+            <br>
+            <br>
             <form id="formMessage">
-                <div style="margin-left:10%;margin-bottom:10px; " class="navbar-fixed-bottom">
-                    <div class="row">
-                        <div class="col-md-10">
-                            <input type="text" maxlength="256" name="message" class="form-control" id="messageField" placeholder="Your message here ...">
-                        </div>
-                        <div class="col-md-2">
-                            <button id="buttonSubmit" type="submit" class="btn btn-danger">Send</button>
-                        </div>
-                    </div>
-                </div>
+                <input autocomplete="off" type="text" name="message" class="form-control" id="messageField" placeholder="Your message here ...">
+                <br>
+                <button id="buttonSubmit" type="submit" class="btn btn-danger pull-right">Send</button>
             </form>
+            <br><br><br><br>
+            <div style=" min-height: 100vh;" id="users" class="col-md-2"></div>
+            <div id="chat" style="height: 100vh;"></div>
         </div>
+    </div>
     </div>
 </body>
 
