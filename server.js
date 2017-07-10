@@ -3,7 +3,7 @@ let express = require('express'),
     bodyParser = require('body-parser'),
     server = require('http').createServer(app),
     io = require("socket.io").listen(server);
-let usernames = ["<b>Users</b><br/>"];
+let usernames = {};
 let port = process.env.PORT || 8080;
 
 server.listen(port);
@@ -21,25 +21,44 @@ app.get('/', (req, res, next) => {
 });
 
 // Socketing ...
-
 io.sockets.on("connection", (socket) => {
     socket.on("username", (name, callback) => {
-        if (!usernames.includes(name)) {
+        if (name in usernames) {
+            callback(false);
+        } else {
             callback(true);
             socket.username = name;
-            usernames.push(socket.username);
-            io.emit("usernames", usernames);
-        } else {
-            callback(false);
+            usernames[socket.username] = socket;
+            io.emit("usernames", Object.keys(usernames));
         }
     });
-    socket.on("message", (message) => {
-        io.emit("message", { message: message, name: socket.username });
+    socket.on("message", (message, callback) => {
+        message = message.trim();
+
+        // Whisper code below ...
+        if (message.substring(0, 3) === "/w ") {
+            message = message.substring(3);
+            let indexSpace = message.indexOf(" ");
+            if (indexSpace !== -1) {
+                let name = message.substring(0, indexSpace);
+                message = message.substring(indexSpace + 1);
+                if (name in usernames) {
+                    usernames[name].emit("whisper", { message: message, name: socket.username });
+                } else {
+                    callback("Enter a valid user !!!");
+                }
+            } else {
+                callback("Please, enter the whisper message");
+            }
+        } else {
+            callback(true);
+            io.emit("message", { message: message, name: socket.username });
+        }
     });
     socket.on("disconnect", (value) => {
         if (!socket.username)
             return;
-        usernames.splice(usernames.indexOf(socket.username), 1);
+        delete usernames[socket.username];
         io.emit("usernames", usernames);
     });
 });

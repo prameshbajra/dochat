@@ -31,7 +31,9 @@ $(document).ready(() => {
 
     formMessage.submit((e) => {
         e.preventDefault();
-        socket.emit("message", messageField.val());
+        socket.emit("message", messageField.val(), (data) => {
+            console.log(`${data}`);
+        });
         messageField.val("");
     });
 
@@ -41,10 +43,15 @@ $(document).ready(() => {
     });
 
     socket.on("usernames", (usernames) => {
-        let htmlUsers = "";
+        let htmlUsers = "<b>Users<b><br><br>";
         for (let i = 0; i < usernames.length; i++) {
             htmlUsers += usernames[i] + "<br/>";
         }
         users.html(htmlUsers);
+    });
+
+    socket.on("whisper", (data) => {
+        console.log(data);
+        chatMain.append("<pre><b>" + data.name + "</b> : " + data.message + "</pre>");
     });
 });
