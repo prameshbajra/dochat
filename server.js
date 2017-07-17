@@ -39,6 +39,13 @@ let ChatModel = mongoose.model("Message", chatSchema);
 
 // Socketing ...
 io.sockets.on("connection", (socket) => {
+    let query = ChatModel.find({});
+    query.sort("-created").limit(100).exec((error, data) => {
+        if (error) throw error;
+        else {
+            socket.emit("oldMessages", data);
+        }
+    });
     socket.on("username", (name, callback) => {
         if (name in usernames) {
             callback(false);
@@ -68,7 +75,11 @@ io.sockets.on("connection", (socket) => {
             }
         } else {
             callback(true);
-            io.emit("message", { message: message, name: socket.username });
+            let newMessage = new ChatModel({ username: socket.username, message: message });
+            newMessage.save((error) => {
+                if (error) throw error;
+                io.emit("message", { message: message, name: socket.username });
+            });
         }
     });
     socket.on("disconnect", (value) => {

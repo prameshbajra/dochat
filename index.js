@@ -51,7 +51,13 @@ $(document).ready(() => {
     });
 
     socket.on("whisper", (data) => {
-        console.log(data);
         chatMain.append("<pre><b>" + data.name + "</b> : " + data.message + "</pre>");
+    });
+
+    socket.on("oldMessages", (message) => {
+        message.reverse();
+        message.forEach((element) => {
+            chatMain.append("<b>" + element.username + " : </b>" + element.message + "<br/>");
+        });
     });
 });
