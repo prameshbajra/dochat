@@ -2,9 +2,14 @@ let express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
     server = require('http').createServer(app),
+    mongoose = require("mongoose"),
     io = require("socket.io").listen(server);
 let usernames = {};
 let port = process.env.PORT || 8080;
+
+mongoose.connect("mongodb://localhost/chat", () => {
+
+});
 
 server.listen(port);
 
