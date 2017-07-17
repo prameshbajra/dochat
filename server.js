@@ -7,10 +7,6 @@ let express = require('express'),
 let usernames = {};
 let port = process.env.PORT || 8080;
 
-mongoose.connect("mongodb://localhost/chat", () => {
-
-});
-
 server.listen(port);
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -24,6 +20,22 @@ app.use("/index", express.static(__dirname + "/"))
 app.get('/', (req, res, next) => {
     res.sendFile(__dirname + "/index.html");
 });
+
+// Connection to mongoDB ...
+mongoose.connect("mongodb://localhost/chat", (error) => {
+    if (error) console.log(error)
+    else console.log("Success Vayo :D ");
+});
+
+// creating Schema ...
+let chatSchema = new mongoose.Schema({
+    username: { type: String, required: true },
+    message: { type: String, required: true },
+    created: { type: Date, default: Date.now }
+});
+
+// Creating a mongoose model for interaction with database ...
+let ChatModel = mongoose.model("Message", chatSchema);
 
 // Socketing ...
 io.sockets.on("connection", (socket) => {
@@ -39,7 +51,6 @@ io.sockets.on("connection", (socket) => {
     });
     socket.on("message", (message, callback) => {
         message = message.trim();
-
         // Whisper code below ...
         if (message.substring(0, 3) === "/w ") {
             message = message.substring(3);
