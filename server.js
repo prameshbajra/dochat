@@ -87,6 +87,6 @@ io.sockets.on("connection", (socket) => {
         if (!socket.username)
             return;
         delete usernames[socket.username];
-        io.emit("usernames", usernames);
+        io.emit("usernames", Object.keys(usernames));
     });
 });
