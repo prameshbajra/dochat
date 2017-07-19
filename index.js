@@ -20,6 +20,10 @@ $(document).ready(() => {
             if (value) {
                 nameEnter.fadeOut(1000);
                 chat.fadeIn(1000, () => {
+                    // Starting the scroll at end with a animation scroll ...
+                    $(chatMain).animate({
+                        scrollTop: $(chatMain).prop("scrollHeight")
+                    }, 1000);
                     messageField.focus();
                 });
             } else {
