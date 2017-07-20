@@ -28,7 +28,7 @@ app.get('/sketch', (req, res, next) => {
 
 // Connection to mongoDB ...
 // For local run use "mongodb://localhost/chat" ...mongodb://chatmessages:Mzekerom99@ds117271.mlab.com:17271/messages
-mongoose.connect("mongodb://chatmessages:Mzekerom99@ds117271.mlab.com:17271/messages", (error) => {
+mongoose.connect("mongodb://localhost/chat", (error) => {
     if (error) console.log(error)
     else console.log("Success Vayo :D ");
 });
