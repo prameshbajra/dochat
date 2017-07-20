@@ -8,13 +8,13 @@ function setup() {
 
 function drawing(messageData) {
     fill(random(1, 255), random(1, 255), random(1, 255));
-    ellipse(messageData.x, messageData.y, 30, 30);
+    ellipse(messageData.x, messageData.y, 10, 10);
 }
 
 function mouseDragged() {
     console.log("Sending :: " + mouseX + " , " + mouseY);
     fill(random(1, 255), random(1, 255), random(1, 255));
-    ellipse(mouseX, mouseY, 30, 30);
+    ellipse(mouseX, mouseY, 10, 10);
     var dataToSend = {
         x: mouseX,
         y: mouseY
