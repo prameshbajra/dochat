@@ -42,6 +42,13 @@ $(document).ready(() => {
         messageField.val("");
     });
 
+    sketch.click(() => {
+        let message = "Let's sketch. <a href = '/index/sketch.html'>Click here </a> to start.";
+        socket.emit("message", message, (result) => {
+            console.log(`${result}`);
+        });
+    });
+
     // Socketing ...
     socket.on("message", (message) => {
         chatMain.append("<b>" + message.name + " : </b>" + message.message + "<br/>");
