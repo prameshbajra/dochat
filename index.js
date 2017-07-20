@@ -48,7 +48,7 @@ $(document).ready(() => {
         // Scroll down for 
         $(chatMain).animate({
             scrollTop: $(chatMain).prop("scrollHeight")
-        }, 1000);
+        }, 500);
     });
 
     socket.on("usernames", (usernames) => {
