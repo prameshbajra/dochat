@@ -14,6 +14,7 @@ app.use(bodyParser.json());
 app.use("/jsjquery", express.static(__dirname + "/node_modules/jquery/dist/"));
 app.use("/css", express.static(__dirname + "/node_modules/bootstrap/dist/css/"));
 app.use("/js", express.static(__dirname + "/node_modules/bootstrap/dist/js/"));
+app.use("/libraries", express.static(__dirname + "/libraries/"));
 app.use("/socket.io", express.static(__dirname + "/node_modules/socket.io/socket.io-client/dist/"));
 app.use("/index", express.static(__dirname + "/"))
 
@@ -21,9 +22,13 @@ app.get('/', (req, res, next) => {
     res.sendFile(__dirname + "/index.html");
 });
 
+app.get('/sketch', (req, res, next) => {
+    res.sendFile(__dirname + "/sketch.html");
+});
+
 // Connection to mongoDB ...
-// For local run use "mongodb://localhost/chat" ...
-mongoose.connect("mongodb://chatmessages:Mzekerom99@ds117271.mlab.com:17271/messages", (error) => {
+// For local run use "mongodb://localhost/chat" ...mongodb://chatmessages:Mzekerom99@ds117271.mlab.com:17271/messages
+mongoose.connect("mongodb://localhost/chat", (error) => {
     if (error) console.log(error)
     else console.log("Success Vayo :D ");
 });
@@ -83,6 +88,12 @@ io.sockets.on("connection", (socket) => {
             });
         }
     });
+
+    // For sketch happening ...
+    socket.on("Mouse", (messageData) => {
+        io.emit("Mouse", messageData);
+    });
+
     socket.on("disconnect", (value) => {
         if (!socket.username)
             return;

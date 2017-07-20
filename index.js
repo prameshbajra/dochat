@@ -4,6 +4,7 @@ $(document).ready(() => {
         name = $('#name'),
         users = $('#users'),
         error = $('#error'),
+        sketch = $('#sketch'),
         indexForm = $('#indexForm'),
         nameEnter = $('.nameEnter'),
         formMessage = $('#formMessage'),
@@ -44,6 +45,10 @@ $(document).ready(() => {
     // Socketing ...
     socket.on("message", (message) => {
         chatMain.append("<b>" + message.name + " : </b>" + message.message + "<br/>");
+        // Scroll down for 
+        $(chatMain).animate({
+            scrollTop: $(chatMain).prop("scrollHeight")
+        }, 1000);
     });
 
     socket.on("usernames", (usernames) => {
