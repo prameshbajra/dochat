@@ -10,7 +10,7 @@
     <script src="/js/bootstrap.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/index/index.js"></script>
-    <title>Chat Demo</title>
+    <title>Chat Room</title>
 </head>
 
 <body>
@@ -42,18 +42,23 @@
             <br><br>
             <div class="jumbotron">
                 <h1>Hello, Everyone.</h1><br>
-                <p>Feel free for contributions.</p>
-                <h3>Designed and developed by <br>Pramesh Bajracharya</h3>
+                <p>Feel free for contributions.</p><br>
+                <h3>Designed and developed by <br><br><b>Pramesh Bajracharya</b></h3>
             </div>
         </div>
 
         <!--Chat page-->
         <div class="chat">
+            <br>
+            <a href="/sketch" target="_blank">
+                <button id="sketch" type="submit" class="btn btn-info pull-right btn-block">Let's Sketch!</button>
+                </a>
             <br><br>
             <div class="row" style="height:100%;width:100%;position:relative;overflow:hidden;">
+                <br><br>
                 <div class="col-md-2 well" style="height:75vh;white-space: pre-line;" id="users"></div>
                 <div class="col-md-10 well" id="chatMain" style="height: 75vh;position: absolute;right: -20px;overflow-y: scroll;"></div>
-            </div><br><br>
+            </div>
             <form id="formMessage">
                 <div class="row">
                     <div class="col-md-10">

@@ -4,6 +4,7 @@ $(document).ready(() => {
         name = $('#name'),
         users = $('#users'),
         error = $('#error'),
+        sketch = $('#sketch'),
         indexForm = $('#indexForm'),
         nameEnter = $('.nameEnter'),
         formMessage = $('#formMessage'),
@@ -20,6 +21,10 @@ $(document).ready(() => {
             if (value) {
                 nameEnter.fadeOut(1000);
                 chat.fadeIn(1000, () => {
+                    // Starting the scroll at end with a animation scroll ...
+                    $(chatMain).animate({
+                        scrollTop: $(chatMain).prop("scrollHeight")
+                    }, 1000);
                     messageField.focus();
                 });
             } else {
@@ -37,9 +42,20 @@ $(document).ready(() => {
         messageField.val("");
     });
 
+    sketch.click(() => {
+        let message = "Let's sketch. <a href = '/index/sketch.html' target = '_blank'> Click here </a> to start.";
+        socket.emit("message", message, (result) => {
+            console.log(`${result}`);
+        });
+    });
+
     // Socketing ...
     socket.on("message", (message) => {
         chatMain.append("<b>" + message.name + " : </b>" + message.message + "<br/>");
+        // Scroll down for 
+        $(chatMain).animate({
+            scrollTop: $(chatMain).prop("scrollHeight")
+        }, 500);
     });
 
     socket.on("usernames", (usernames) => {
@@ -51,7 +67,13 @@ $(document).ready(() => {
     });
 
     socket.on("whisper", (data) => {
-        console.log(data);
         chatMain.append("<pre><b>" + data.name + "</b> : " + data.message + "</pre>");
+    });
+
+    socket.on("oldMessages", (message) => {
+        message.reverse();
+        message.forEach((element) => {
+            chatMain.append("<b>" + element.username + " : </b>" + element.message + "<br/>");
+        });
     });
 });
