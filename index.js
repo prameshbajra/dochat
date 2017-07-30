@@ -52,7 +52,7 @@ $(document).ready(() => {
     // Socketing ...
     socket.on("message", (message) => {
         chatMain.append("<b>" + message.name + " : </b>" + message.message + "<br/>");
-        // Scroll down for 
+        // Scroll down for ...
         $(chatMain).animate({
             scrollTop: $(chatMain).prop("scrollHeight")
         }, 500);
