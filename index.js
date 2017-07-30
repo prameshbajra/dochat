@@ -1,5 +1,5 @@
 $(document).ready(() => {
-    let chat = $('.chat'),
+    const chat = $('.chat'),
         chatMain = $('#chatMain'),
         name = $('#name'),
         users = $('#users'),
@@ -10,7 +10,7 @@ $(document).ready(() => {
         formMessage = $('#formMessage'),
         messageField = $('#messageField');
 
-    let socket = io.connect();
+    const socket = io.connect();
 
     error.hide();
     chat.hide();
@@ -43,7 +43,7 @@ $(document).ready(() => {
     });
 
     sketch.click(() => {
-        let message = "Let's sketch. <a href = '/index/sketch.html' target = '_blank'> Click here </a> to start.";
+        const message = "Let's sketch. <a href = '/index/sketch.html' target = '_blank'> Click here </a> to start.";
         socket.emit("message", message, (result) => {
             console.log(`${result}`);
         });
