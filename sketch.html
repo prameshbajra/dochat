@@ -9,6 +9,7 @@
     <script src="/jsjquery/jquery.js"></script>
     <link rel="stylesheet" href="/css/bootstrap.css" />
     <script src="/js/bootstrap.js"></script>
+    <script language="javascript" type="text/javascript" src="/index/sketchjq.js"></script>
     <script language="javascript" type="text/javascript" src="/index/sketch.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <title>Sketch Room</title>
@@ -22,7 +23,7 @@
 </head>
 
 <body>
-    <div style="margin-top: 10%;" class="modal">
+    <div style="margin-top: 5%;" class="modal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -31,7 +32,17 @@
                 </div>
                 <div class="modal-body">
                     <p>Choose your pen color &hellip;</p>
-                    <button type="button" class="redColor">RED</button>
+                    <button type="button" style="background-color: #ff0000;" class="btn redColor"><b>Red</b></button>
+                    <button type="button" style="background-color: #00ff00;" class="btn greenColor"><b>Green</b></button>
+                    <button type="button" style="background-color: #0000ff;" class="btn blueColor"><b>Blue</b></button>
+                    <button type="button" style="background-color: #f0f0f0;" class="btn randColor"><b>Random</b></button>
+                    <br><br><br>
+                    <p>Thickness : </p>
+                    <button class="btn tenThick">10</button>
+                    <button class="btn twentyThick">20</button>
+                    <button class="btn thirtyThick">30</button>
+                    <button class="btn fourtyThick">40</button>
+                    <button class="btn fiftyThick">50</button>
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="closeButton" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -42,7 +53,8 @@
     </div>
     <!-- /.modal -->
 
-    <button type="button" id="settingsButton" style="margin:10px 0 0 10px;padding:10px ;position: absolute; border-radius:50% ">
+    <button type="button" id="settingsButton" data-toggle="tooltip" data-placement="right" title="Change your settings here."
+        style="margin:10px 0 0 10px;padding:10px ;position: absolute; border-radius:50% ">
         Set
     </button>
     <p style="font-family:consolas;bottom:0;position: absolute;color:white;">

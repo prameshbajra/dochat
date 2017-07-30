@@ -1,18 +1,5 @@
 var socket;
 
-$('document').ready(() => {
-    let modal = $('.modal'),
-        settingsButton = $('#settingsButton'),
-        close = $('.close, #closeButton');
-
-    settingsButton.on('click', () => {
-        modal.slideDown();
-    });
-    close.bind('click', () => {
-        modal.slideUp();
-    });
-});
-
 function setup() {
     createCanvas(windowWidth, windowHeight);
     background(0);
@@ -21,20 +8,32 @@ function setup() {
 }
 
 function drawing(messageData) {
-    fill(random(1, 255), random(1, 255), random(1, 255));
-    ellipse(messageData.x, messageData.y, 10, 10);
+    fillColor(messageData.color);
+    ellipse(messageData.x, messageData.y, messageData.thick, messageData.thick);
 }
 
 function mouseDragged() {
-    console.log("Sending :: " + mouseX + " , " + mouseY);
-    fill(random(1, 255), random(1, 255), random(1, 255));
-    ellipse(mouseX, mouseY, 10, 10);
+    fillColor();
+    ellipse(mouseX, mouseY, thick, thick);
     var dataToSend = {
         x: mouseX,
-        y: mouseY
+        y: mouseY,
+        color: color,
+        thick: thick
     };
     socket.emit("Mouse", dataToSend);
 }
 
 function draw() {
+}
+
+// Fill color function ...
+let fillColor = (color) => {
+    switch (color) {
+        case 'white': fill(255, 255, 255); break;
+        case 'red': fill(255, 0, 0); break;
+        case 'green': fill(0, 255, 0); break;
+        case 'blue': fill(0, 0, 255); break;
+        default: fill(random(1, 255), random(1, 255), random(1, 255))
+    }
 }
