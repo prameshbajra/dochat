@@ -1,4 +1,18 @@
 var socket;
+
+$('document').ready(() => {
+    let modal = $('.modal'),
+        settingsButton = $('#settingsButton'),
+        close = $('.close, #closeButton');
+
+    settingsButton.on('click', () => {
+        modal.slideDown();
+    });
+    close.bind('click', () => {
+        modal.slideUp();
+    });
+});
+
 function setup() {
     createCanvas(windowWidth, windowHeight);
     background(0);

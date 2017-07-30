@@ -6,8 +6,10 @@
     <!-- uncomment lines below to include extra p5 libraries -->
     <script language="javascript" src="/libraries/p5.dom.js"></script>
     <script language="javascript" src="/libraries/p5.sound.js"></script>
-    <script language="javascript" type="text/javascript" src="/index/sketch.js"></script>
     <script src="/jsjquery/jquery.js"></script>
+    <link rel="stylesheet" href="/css/bootstrap.css" />
+    <script src="/js/bootstrap.js"></script>
+    <script language="javascript" type="text/javascript" src="/index/sketch.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <title>Sketch Room</title>
     <!-- this line removes any default padding and style. you might only need one of these values set. -->
@@ -20,6 +22,29 @@
 </head>
 
 <body>
+    <div style="margin-top: 10%;" class="modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Choose your settings wisely :P. Just kidding :D</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Choose your pen color &hellip;</p>
+                    <button type="button" class="redColor">RED</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="closeButton" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" id="saveChangeButton" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.modal -->
+
+    <button type="button" id="settingsButton" style="margin:10px 0 0 10px;padding:10px ;position: absolute; border-radius:50% ">
+        Set
+    </button>
     <p style="font-family:consolas;bottom:0;position: absolute;color:white;">
         (Refresh this page for clearing ... <a style="text-decoration: none;color: white;" href="/index/sketch.html">Click here</a>...)
     </p>
