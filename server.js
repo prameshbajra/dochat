@@ -1,11 +1,11 @@
-let express = require('express'),
+const express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
     server = require('http').createServer(app),
     mongoose = require("mongoose"),
     io = require("socket.io").listen(server);
 let usernames = {};
-let port = process.env.PORT || 8080;
+const port = process.env.PORT || 8080;
 
 server.listen(port);
 
@@ -22,8 +22,12 @@ app.get('/', (req, res, next) => {
     res.sendFile(__dirname + "/index.html");
 });
 
-app.get('/sketch', (req, res, next) => {
+app.post('/sketch', (req, res, next) => {
     res.sendFile(__dirname + "/sketch.html");
+});
+
+app.use(function (req, res) {
+    res.send('<br><br><br><center><h2>You are in the wrong place!</h2><br><a href = "/">Go home</a></center>');
 });
 
 // Connection to mongoDB ...
