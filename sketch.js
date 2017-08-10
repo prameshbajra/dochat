@@ -34,6 +34,7 @@ let fillColor = (color) => {
         case 'red': fill(255, 0, 0); break;
         case 'green': fill(0, 255, 0); break;
         case 'blue': fill(0, 0, 255); break;
+        case 'eraser': fill(0, 0, 0); break;
         default: fill(random(1, 255), random(1, 255), random(1, 255))
     }
 }

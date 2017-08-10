@@ -10,6 +10,7 @@ $('document').ready(() => {
         greenColor = $('.greenColor'),
         blueColor = $('.blueColor'),
         randColor = $('.randColor'),
+        eraser = $('.eraser'),
 
         tenThick = $('.tenThick'),
         twentyThick = $('.twentyThick'),
@@ -35,6 +36,9 @@ $('document').ready(() => {
     });
     randColor.on('click', () => {
         color = "rand";
+    });
+    eraser.on('click', () => {
+        color = "eraser";
     });
     // Thickness selection below this ...
 
