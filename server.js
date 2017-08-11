@@ -14,6 +14,7 @@ app.use(bodyParser.json());
 app.use("/jsjquery", express.static(__dirname + "/node_modules/jquery/dist/"));
 app.use("/css", express.static(__dirname + "/node_modules/bootstrap/dist/css/"));
 app.use("/js", express.static(__dirname + "/node_modules/bootstrap/dist/js/"));
+app.use("/simplepeer", express.static(__dirname + "/node_modules/simple-peer/"));
 app.use("/libraries", express.static(__dirname + "/libraries/"));
 app.use("/socket.io", express.static(__dirname + "/node_modules/socket.io/socket.io-client/dist/"));
 app.use("/index", express.static(__dirname + "/"))
@@ -24,6 +25,10 @@ app.get('/', (req, res, next) => {
 
 app.post('/sketch', (req, res, next) => {
     res.sendFile(__dirname + "/sketch.html");
+});
+
+app.post('/video', (req, res, next) => {
+    res.sendFile(__dirname + "/video.html");
 });
 
 app.use(function (req, res) {
@@ -38,14 +43,14 @@ mongoose.connect("mongodb://chatmessages:Mzekerom99@ds117271.mlab.com:17271/mess
 });
 
 // creating Schema ...
-let chatSchema = new mongoose.Schema({
+const chatSchema = new mongoose.Schema({
     username: { type: String, required: true },
     message: { type: String, required: true },
     created: { type: Date, default: Date.now }
 });
 
 // Creating a mongoose model for interaction with database ...
-let ChatModel = mongoose.model("Message", chatSchema);
+const ChatModel = mongoose.model("Message", chatSchema);
 
 // Socketing ...
 io.sockets.on("connection", (socket) => {
