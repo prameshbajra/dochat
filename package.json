@@ -12,6 +12,7 @@
         "socket.io": "^2.0.3",
         "picnic": "~6.4.0",
         "peerjs": "~0.3.14",
+        "peer": "^0.2.8",
         "handlebars": "~4.0.5"
     },
     "engines": {
