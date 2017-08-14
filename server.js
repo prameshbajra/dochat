@@ -11,24 +11,28 @@ server.listen(port);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use("/jsjquery", express.static(__dirname + "/node_modules/jquery/dist/"));
-app.use("/css", express.static(__dirname + "/node_modules/bootstrap/dist/css/"));
-app.use("/js", express.static(__dirname + "/node_modules/bootstrap/dist/js/"));
-app.use("/simplepeer", express.static(__dirname + "/node_modules/simple-peer/"));
-app.use("/libraries", express.static(__dirname + "/libraries/"));
-app.use("/socket.io", express.static(__dirname + "/node_modules/socket.io/socket.io-client/dist/"));
-app.use("/index", express.static(__dirname + "/"))
 
+// app.use("/jsjquery", express.static(__dirname + "/node_modules/jquery/dist/"));
+// app.use("/css", express.static(__dirname + "/node_modules/bootstrap/dist/css/"));
+// app.use("/js", express.static(__dirname + "/node_modules/bootstrap/dist/js/"));
+// app.use("/simplepeer", express.static(__dirname + "/node_modules/simple-peer/"));
+// app.use("/libraries", express.static(__dirname + "/libraries/"));
+// app.use("/socket.io", express.static(__dirname + "/node_modules/socket.io/socket.io-client/dist/"));
+// app.use("/index", express.static(__dirname + "/"))
+
+app.use(express.static(__dirname));
+
+// Routes below ...
 app.get('/', (req, res, next) => {
-    res.sendFile(__dirname + "/index.html");
+    res.sendFile(__dirname + "/layout/index.html");
 });
 
 app.post('/sketch', (req, res, next) => {
-    res.sendFile(__dirname + "/sketch.html");
+    res.sendFile(__dirname + "/layout/sketch.html");
 });
 
 app.post('/video', (req, res, next) => {
-    res.sendFile(__dirname + "/video.html");
+    res.sendFile(__dirname + "/layout/video.html");
 });
 
 app.use(function (req, res) {
@@ -37,7 +41,7 @@ app.use(function (req, res) {
 
 // Connection to mongoDB ...
 // For local run use "mongodb://localhost/chat" ...mongodb://chatmessages:Mzekerom99@ds117271.mlab.com:17271/messages
-mongoose.connect("mongodb://chatmessages:Mzekerom99@ds117271.mlab.com:17271/messages", (error) => {
+mongoose.connect("mongodb://localhost/chat", (error) => {
     if (error) console.log(error)
     else console.log("Success Vayo :D ");
 });

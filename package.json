@@ -1,7 +1,7 @@
 {
     "name": "chat",
     "version": "1.0.0",
-    "description": "This is what I do ...",
+    "description": "This started as a time pass but is getting dangerous now :D",
     "main": "server.js",
     "dependencies": {
         "body-parser": "^1.17.2",
@@ -9,7 +9,10 @@
         "express": "^4.15.3",
         "jquery": "^3.2.1",
         "mongoose": "^4.11.3",
-        "socket.io": "^2.0.3"
+        "socket.io": "^2.0.3",
+        "picnic": "~6.4.0",
+        "peerjs": "~0.3.14",
+        "handlebars": "~4.0.5"
     },
     "engines": {
         "node": "6.9.4"
@@ -25,6 +28,6 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "node server.js"
     },
-    "author": "",
+    "author": "Pramesh Bajracharya",
     "license": "ISC"
 }
