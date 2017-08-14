@@ -50,10 +50,18 @@
         <!--Chat page-->
         <div class="chat">
             <br>
-            <form action="/sketch" method="post" target="_blank">
-                <button id="sketch" type="submit" class="btn btn-info pull-right btn-block">Let's Sketch!</button>
-            </form>
-            <br><br>
+            <div class="row">
+                <div class="col-md-6">
+                    <form action="/sketch" method="post" target="_blank">
+                        <button id="sketch" type="submit" class="btn btn-info btn-block">Let's Sketch!</button>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <form action="/video" method="post" target="_blank">
+                        <button id="video" type="submit" class="btn btn-info pull-right btn-block">Go video with a friend.</button>
+                    </form>
+                </div>
+            </div>
             <div class="row" style="height:100%;width:100%;position:relative;overflow:hidden;">
                 <br><br>
                 <div class="col-md-2 well" style="height:75vh;white-space: pre-line;" id="users"></div>
