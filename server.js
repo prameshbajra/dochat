@@ -34,7 +34,7 @@ app.use((req, res) => {
 
 // Connection to mongoDB ...
 // For local run use "mongodb://localhost/chat" ...mongodb://chatmessages:Mzekerom99@ds117271.mlab.com:17271/messages
-mongoose.connect("mongodb://localhost/chat", (error) => {
+mongoose.connect("mongodb://chatmessages:Mzekerom99@ds117271.mlab.com:17271/messages", (error) => {
     if (error) console.log(error)
     else console.log("Success Vayo :D ");
 });
