@@ -120,5 +120,4 @@ $(function () {
             onReceiveStream(stream, 'peer-camera');
         });
     }
-
 });

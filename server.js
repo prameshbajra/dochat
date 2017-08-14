@@ -9,17 +9,10 @@ const port = process.env.PORT || 8080;
 
 server.listen(port);
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 app.use(bodyParser.json());
-
-// app.use("/jsjquery", express.static(__dirname + "/node_modules/jquery/dist/"));
-// app.use("/css", express.static(__dirname + "/node_modules/bootstrap/dist/css/"));
-// app.use("/js", express.static(__dirname + "/node_modules/bootstrap/dist/js/"));
-// app.use("/simplepeer", express.static(__dirname + "/node_modules/simple-peer/"));
-// app.use("/libraries", express.static(__dirname + "/libraries/"));
-// app.use("/socket.io", express.static(__dirname + "/node_modules/socket.io/socket.io-client/dist/"));
-// app.use("/index", express.static(__dirname + "/"))
-
 app.use(express.static(__dirname));
 
 // Routes below ...
@@ -35,7 +28,7 @@ app.post('/video', (req, res, next) => {
     res.sendFile(__dirname + "/layout/video.html");
 });
 
-app.use(function (req, res) {
+app.use((req, res) => {
     res.send('<br><br><br><center><h2>You are in the wrong place!</h2><br><a href = "/">Go home</a></center>');
 });
 
@@ -48,9 +41,18 @@ mongoose.connect("mongodb://localhost/chat", (error) => {
 
 // creating Schema ...
 const chatSchema = new mongoose.Schema({
-    username: { type: String, required: true },
-    message: { type: String, required: true },
-    created: { type: Date, default: Date.now }
+    username: {
+        type: String,
+        required: true
+    },
+    message: {
+        type: String,
+        required: true
+    },
+    created: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 // Creating a mongoose model for interaction with database ...
@@ -85,7 +87,10 @@ io.sockets.on("connection", (socket) => {
                 let name = message.substring(0, indexSpace);
                 message = message.substring(indexSpace + 1);
                 if (name in usernames) {
-                    usernames[name].emit("whisper", { message: message, name: socket.username });
+                    usernames[name].emit("whisper", {
+                        message: message,
+                        name: socket.username
+                    });
                 } else {
                     callback("Enter a valid user !!!");
                 }
@@ -94,10 +99,16 @@ io.sockets.on("connection", (socket) => {
             }
         } else {
             callback(true);
-            let newMessage = new ChatModel({ username: socket.username, message: message });
+            let newMessage = new ChatModel({
+                username: socket.username,
+                message: message
+            });
             newMessage.save((error) => {
                 if (error) throw error;
-                io.emit("message", { message: message, name: socket.username });
+                io.emit("message", {
+                    message: message,
+                    name: socket.username
+                });
             });
         }
     });

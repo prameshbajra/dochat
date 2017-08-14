@@ -9,65 +9,66 @@
     <link rel="stylesheet" href="..\node_modules\picnic\releases\plugins.min.css">
     <link rel="stylesheet" href="..\css\style.css">
     <script src="..\node_modules\jquery\dist\jquery.min.js"></script>
+    <link rel="stylesheet" href="..\node_modules\bootstrap\dist\css\bootstrap.css" />
+    <script src="..\node_modules\bootstrap\dist\js\bootstrap.js"></script>
     <script src="..\node_modules\handlebars\dist\handlebars.min.js"></script>
     <script src="..\node_modules\peerjs\dist\peer.min.js"></script>
     <script src="..\js\video.js"></script>
 </head>
 
 <body>
-    <div id="wrapper">
-
-        <!-- Display the video of the remote peer -->
-        <div id="peer-camera" class="camera">
-            <video width="300" height="300" autoplay></video>
-        </div>
-
-        <div id="messenger-wrapper">
-            <div class="container">
-                <h1>Chat demo</h1>
-
-                <!--
-            Display the login form and messaging form.
-            This allows the user to send messages to their peer and make a video call.
-          -->
-                <div id="connect">
-                    <h4>ID: <span id="id"></span></h4>
-                    <input type="text" name="name" id="name" placeholder="Name">
-                    <input type="text" name="peer_id" id="peer_id" placeholder="Peer ID">
-                    <div id="connected_peer_container" class="hidden">
-                        Connected Peer:
-                        <span id="connected_peer"></span>
-                    </div>
-                    <button id="login">Login</button>
-                </div>
-
-                <div id="chat" class="hidden">
-                    <div id="messages-container">
-                        <ul id="messages"></ul>
-                    </div>
-                    <div id="message-container">
-                        <input type="text" name="message" id="message" placeholder="Type message..">
-                        <button id="send-message">Send Message</button>
-                        <button id="call">Call</button>
-                    </div>
+    <div class="container" id="wrapper">
+        <div class="row">
+            <div class="col-md-6">
+                <br>
+                <!-- Display video of the current user -->
+                <div id="my-camera" class="camera">
+                    <video height="270px" width="600px" autoplay></video>
+                </div><br><br>
+                <!-- Display the video of the remote peer -->
+                <div id="peer-camera" class="camera">
+                    <video height="270px" width="600px" autoplay></video>
                 </div>
             </div>
-        </div>
-
-        <!-- Display video of the current user -->
-        <div id="my-camera" class="camera">
-            <video width="200" height="200" autoplay></video>
+            <div class="col-md-6" id="addedMsg">
+                <div id="messenger-wrapper">
+                    <h1>Video chat</h1>
+                    <div id="connect">
+                        <div class="alert alert-success" role="alert">Share the ID below to your friend to get connected. It may take time. Don't mind :D</div>
+                        <h4>ID: <span id="id"></span></h4>
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Name" required>
+                        <br>
+                        <input type="text" class="form-control" name="peer_id" id="peer_id" placeholder="Peer ID">
+                        <div id="connected_peer_container" class="hidden">
+                            Connected friend:
+                            <span id="connected_peer"></span>
+                        </div>
+                        <br>
+                        <button class="btn btn-success btn-block" id="login">Login</button>
+                    </div>
+                    <div id="chat" class="hidden">
+                        <div id="messages-container">
+                            <ul class="list-group" id="messages"></ul>
+                        </div>
+                        <div id="message-container">
+                            <input type="text" class="form-control" name="message" id="message" placeholder="Type message..">
+                            <br>
+                            <button id="send-message" class="btn btn-info">Send Message</button>
+                            <button id="call" class="btn btn-warning pull-right">Video call</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Handlebars template for constructing the list of messages -->
+                <script id="messages-template" type="text/x-handlebars-template">
+                    {{#each messages}}
+                    <li class="list-group-item">
+                        <span class="from"><strong>{{from}}</strong>:</span> {{text}}
+                    </li>
+                    {{/each}}
+                </script>
+            </div>
         </div>
     </div>
-
-    <!-- Handlebars template for constructing the list of messages -->
-    <script id="messages-template" type="text/x-handlebars-template">
-        {{#each messages}}
-        <li>
-            <span class="from">{{from}}:</span> {{text}}
-        </li>
-        {{/each}}
-    </script>
 </body>
 
 </html>
