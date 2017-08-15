@@ -19,14 +19,28 @@
 
 <body>
     <div class="container" id="wrapper">
+        <!-- Remove jumbotron below if needed to use video chat ... -->
+        <div class="jumbotron">
+            <h1 class="display-3">Sorry! :)</h1>
+            <p class="lead">For video chating a SSL certficate (20$ / month) is required hence this feature is dropped for now.</p>
+            <hr class="my-4">
+            <p>If you want to make this work locally, download the code from Github:</p>
+            <br>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="https://github.com/Suzal3579/dochat" role="button">Go to the download page</a>
+            </p>
+        </div>
         <div class="row">
+            <!--
             <div class="col-md-6">
                 <br>
                 <!-- Display video of the current user -->
+            <!--
                 <div id="my-camera" class="camera">
                     <video height="270px" width="600px" autoplay></video>
                 </div><br><br>
                 <!-- Display the video of the remote peer -->
+            <!--
                 <div id="peer-camera" class="camera">
                     <video height="270px" width="600px" autoplay></video>
                 </div>
@@ -60,6 +74,7 @@
                     </div>
                 </div>
                 <!-- Handlebars template for constructing the list of messages -->
+            <!--
                 <script id="messages-template" type="text/x-handlebars-template">
                     {{#each messages}}
                     <li class="list-group-item">
@@ -68,8 +83,8 @@
                     {{/each}}
                 </script>
             </div>
+        </div> -->
         </div>
-    </div>
 </body>
 
 </html>
