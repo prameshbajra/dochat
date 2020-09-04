@@ -13,7 +13,7 @@
         "picnic": "~6.4.0",
         "peerjs": "~0.3.14",
         "peer": "^0.2.8",
-        "handlebars": "~4.0.5"
+        "handlebars": "~4.7.6"
     },
     "engines": {
         "node": "6.9.4"
